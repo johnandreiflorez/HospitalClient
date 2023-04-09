@@ -1,0 +1,80 @@
+﻿<div class="row mt-2">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header bg-dark">
+                <h3 class="card-title">REGISTRO DE INGRESO</h3>
+            </div>
+            <form id="frmRegistroIngreso">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="txtID">ID</label>
+                            <input type="text" class="form-control" id="txtID" placeholder="ID">
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="cboPaciente">Paciente</label>
+                                <select id="cboPaciente" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="cboHabitacion">Habitación</label>
+                                <select id="cboHabitacion" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtFechaIngreso">Fecha ingreso</label>
+                                <input type="date" class="form-control" id="txtFechaIngreso">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="txtFechaSalida">Fecha salida</label>
+                                <input type="date" class="form-control" id="txtFechaSalida" disabled="disabled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="button" id="btnIngresar" class="btn-block btn-lg btn-success">REGISTRAR</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="button" id="btnActualizar" class="btn-block btn-lg btn-primary">ACTUALIZAR</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="button" id="btnEliminar" class="btn-block btn-lg btn-danger">ELIMINAR</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="button" id="btnLimpiar" class="btn-block btn-lg btn-secondary">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div id="dvMensaje" class=""></div>
+                </div>
+                <!-- /.card-body -->
+                <div class="row justify-content-center">
+                    <div class="col-md-11">
+                        <table id="tblIngresos" class="table table-bordered table-striped">
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="Scripts/Ingreso.js"></script>
