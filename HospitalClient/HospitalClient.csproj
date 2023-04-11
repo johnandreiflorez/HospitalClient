@@ -143,10 +143,12 @@
     <Content Include="Paginas\Scripts\Comunes\Combos.js" />
     <Content Include="Paginas\Scripts\Comunes\FuncionesComunes.js" />
     <Content Include="Paginas\Scripts\Comunes\Tablas.js" />
+    <Content Include="Paginas\Scripts\Enfermera.js" />
     <Content Include="Paginas\Scripts\Formulario.js" />
     <Content Include="Paginas\Scripts\Habitacion.js" />
     <Content Include="Paginas\Scripts\Ingreso.js" />
     <Content Include="Paginas\Scripts\Paciente.js" />
+    <Content Include="Paginas\Scripts\TratamientoAsignado.js" />
     <Content Include="Paginas\Tratamiento.html" />
     <Content Include="Paginas\TratamientoAsignado.html" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
@@ -233,12 +235,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
