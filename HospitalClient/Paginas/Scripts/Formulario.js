@@ -1,5 +1,11 @@
 ﻿$(document).ready(function () {
-    $("#content").load("../Paginas/Home.html");
+    let page;
+    if (location.href.includes("?")) {
+      page = location.href.split("?")[1];
+    } else {
+      page = "Home";
+    }
+    $("#content").load("../Paginas/"+ page +".html");
     document.addEventListener("click",menu)
 })
 function menu(e) {
