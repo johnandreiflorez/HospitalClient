@@ -14,10 +14,9 @@ $(document).ready(() => {
     $("#btnLimpiar").click(limpiar)
     LlenarComboServicio("http://localhost:53689/Api/Paciente/GetAll", "#cboPaciente", "Seleccione un paciente", false, "ID", "Nombre");
     LlenarComboServicio("http://localhost:53689/Api/Habitacion/GetAll", "#cboHabitacion", "Seleccione una habitación", false, "ID", "Tipo");
-})
+});
 
 function Ingresar() {
-    debugger;
     getData();
     var result = requestAjax("http://localhost:53689/Api/Ingreso/Create", "POST", data);
     mensaje(true, "Se registro un ingreso con el ID: " + result.ID);

@@ -140,12 +140,14 @@
     <Content Include="Paginas\Medico.html" />
     <Content Include="Paginas\Menu.html" />
     <Content Include="Paginas\Paciente.html" />
+    <Content Include="Paginas\Scripts\Atencion.js" />
     <Content Include="Paginas\Scripts\Comunes\Combos.js" />
     <Content Include="Paginas\Scripts\Comunes\FuncionesComunes.js" />
     <Content Include="Paginas\Scripts\Comunes\Tablas.js" />
     <Content Include="Paginas\Scripts\Formulario.js" />
     <Content Include="Paginas\Scripts\Habitacion.js" />
     <Content Include="Paginas\Scripts\Ingreso.js" />
+    <Content Include="Paginas\Scripts\Medico.js" />
     <Content Include="Paginas\Scripts\Paciente.js" />
     <Content Include="Paginas\Scripts\Tratamiento.js" />
     <Content Include="Paginas\Tratamiento.html" />
@@ -234,12 +236,14 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
