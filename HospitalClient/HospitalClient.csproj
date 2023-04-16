@@ -147,6 +147,7 @@
     <Content Include="Paginas\Scripts\Habitacion.js" />
     <Content Include="Paginas\Scripts\Ingreso.js" />
     <Content Include="Paginas\Scripts\Paciente.js" />
+    <Content Include="Paginas\Scripts\Tratamiento.js" />
     <Content Include="Paginas\Tratamiento.html" />
     <Content Include="Paginas\TratamientoAsignado.html" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
