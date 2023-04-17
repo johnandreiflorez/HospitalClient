@@ -4,7 +4,9 @@
     Apellido: "",
     Fecha_nacimiento: "",
     "Dirección": "",
-    "Teléfono": ""
+    "Teléfono": "",
+    Cedula: 0,
+    ID_Tipo_Documento: ""
 };
 
 $(document).ready(() => {
@@ -13,6 +15,7 @@ $(document).ready(() => {
     $("#btnActualizar").click(Actualizar)
     $("#btnEliminar").click(Eliminar)
     $("#btnLimpiar").click(limpiar)
+    LlenarComboServicio("http://localhost:53689/Api/TipoDocumento/GetAll", "#cboTipoDocumento", "Seleccione un tipo", false, "ID", "Nombre");
 })
 
 function getData() {
@@ -22,6 +25,8 @@ function getData() {
     data.Fecha_nacimiento = $("#txtFechaNacimiento").val();
     data.Teléfono = $("#txtTelefono").val();
     data.Dirección = $("#txtDireccion").val();
+    data.Cedula = $('#txtDocumento').val();
+    data.ID_Tipo_Documento = $('#cboTipoDocumento').val();
 }
 
 function Ingresar() {
@@ -56,8 +61,11 @@ function ConsultarFila(DatosFila) {
     $("#txtNombre").val(DatosFila.find('td:eq(1)').text());
     $("#txtApellido").val(DatosFila.find('td:eq(2)').text());
     $("#txtFechaNacimiento").val(DatosFila.find('td:eq(3)').text().split("T")[0]);
-    $("#txtTelefono").val(DatosFila.find('td:eq(5)').text());
-    $("#txtDireccion").val(DatosFila.find('td:eq(4)').text());
+    $("#txtTelefono").val(DatosFila.find('td:eq(4)').text());
+    $("#txtDireccion").val(DatosFila.find('td:eq(5)').text());
+    setValueCombo("#cboTipoDocumento", DatosFila.find('td:eq(6)').text());
+    $("#txtDocumento").val(DatosFila.find('td:eq(7)').text());
+
 }
 function limpiar() {
     $("#txtID").val("");
@@ -66,4 +74,6 @@ function limpiar() {
     $("#txtFechaNacimiento").val("");
     $("#txtTelefono").val("");
     $("#txtDireccion").val("");
+    $("#txtCedula").val("");
+    $("#cboTipoDocumento").val(-1);
 }

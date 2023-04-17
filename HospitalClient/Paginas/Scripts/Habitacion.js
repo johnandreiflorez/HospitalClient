@@ -1,7 +1,10 @@
 ﻿var data = {
     ID: 0,
     Tipo: "",
-    Precio: 0
+    Precio: 0,
+    ID_Departamento: "",
+    ID_Tipo_Habitacion: "",
+    Piso: ""
 };
 
 $(document).ready(() => {
@@ -10,12 +13,17 @@ $(document).ready(() => {
     $("#btnActualizar").click(Actualizar)
     $("#btnEliminar").click(Eliminar)
     $("#btnLimpiar").click(limpiar)
+    LlenarComboServicio("http://localhost:53689/Api/TipoHabitacion/GetAll", "#cboTipo", "Seleccione un tipo", false, "ID", "Nombre");
+    LlenarComboServicio("http://localhost:53689/Api/Departamento/GetAll", "#cboDepartamento", "Seleccione un departamento", false, "ID", "Nombre");
 })
 
 function getData() {
     data.ID = $("#txtID").val();
     data.Tipo = $("#txtTipo").val();
-    data.Precio= $("#txtPrecio").val();
+    data.Precio = $("#txtPrecio").val();
+    data.ID_Tipo_Habitacion = $('#cboTipo').val();
+    data.ID_Departamento = $('#cboDepartamento').val();
+    data.Piso = $('#txtPiso').val();
 }
 
 function Ingresar() {
@@ -47,11 +55,18 @@ function Consultar() {
 
 function ConsultarFila(DatosFila) {
     $("#txtID").val(DatosFila.find('td:eq(0)').text());
-    $("#txtTipo").val(DatosFila.find('td:eq(1)').text());
-    $("#txtPrecio").val(DatosFila.find('td:eq(2)').text());
+    setValueCombo('#cboTipo', DatosFila.find('td:eq(1)').text());
+    setValueCombo('#cboDepartamento', DatosFila.find('td:eq(2)').text());
+    $("#txtPiso").val(DatosFila.find('td:eq(3)').text());
+    $("#txtPrecio").val(DatosFila.find('td:eq(4)').text());
+    $("#txtTipo").val(DatosFila.find('td:eq(5)').text());
+
 }
 function limpiar() {
     $("#txtID").val("");
     $("#txtTipo").val("");
     $("#txtPrecio").val("");
+    $("#txtPiso").val("");
+    $("#cboDepartamento").val(-1);
+    $("#cboTipo").val(-1);
 }

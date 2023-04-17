@@ -1,7 +1,7 @@
 ﻿<div class="row mt-2">
     <div class="col-md-12">
         <div class="card card-primary">
-            <div class="card-header bg-dark">
+            <div class="card-header bg-lightblue">
                 <h3 class="card-title">REGISTRO DE PACIENTE</h3>
             </div>
             <form id="frmRegistroPaciente">
@@ -27,13 +27,26 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="cboTipoDocumento">Tipo de documento</label>
+                                <select id="cboTipoDocumento" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="txtDocumento">Documento</label>
+                                <input type="number" class="form-control" id="txtDocumento" placeholder="Documento">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="txtFechaNacimiento">Fecha nacimiento</label>
                                 <input type="date" class="form-control" id="txtFechaNacimiento" placeholder="Fecha de nacimiento">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label for="txtTelefono">Teléfono</label>
                                 <input type="text" class="form-control" id="txtTelefono" placeholder="Teléfono del cliente">

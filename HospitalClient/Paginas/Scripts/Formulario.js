@@ -56,3 +56,12 @@ function asignarEventosTabla(idTabla) {
         });
     })
 }
+
+function setValueCombo(idCombo, Valor) {
+    let options = $(idCombo)[0].options;
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].innerText == Valor) {
+            $(idCombo).val(options[i].value);
+        }
+    }
+}

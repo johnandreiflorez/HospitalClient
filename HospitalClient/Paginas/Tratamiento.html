@@ -7,22 +7,16 @@
             <form id="frmRegistroTratamientos">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label for="txtID">ID</label>
                                 <input type="text" class="form-control" id="txtID" placeholder="ID">
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="txtNombre">Nombre</label>
                                 <input type="text" class="form-control" id="txtNombre" placeholder="Nombre del tratamiento">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label for="txtDescripcion">Descripción</label>
-                                <textarea class="form-control" id="txtDescripcion" placeholder="Descripción"></textarea>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -30,6 +24,43 @@
                                 <label for="txtCosto">Costo</label>
                                 <input type="number" class="form-control" id="txtCosto" placeholder="Costo">
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="txtDescripcion">Descripción</label>
+                                <textarea class="form-control" id="txtDescripcion" placeholder="Descripción"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="cboMedicamento">Medicamento</label>
+                                <select id="cboMedicamento" class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label></label>
+                                <button type="button" id="btnMedicamentos" class="btn-block btn-lg btn-sm btn-success">Agregar medicametos</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div id="dvMensajeMedicamentos" class=""></div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11">
+                            <table id="tblMedicamentos" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Medicamento</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                     <div class="row">
