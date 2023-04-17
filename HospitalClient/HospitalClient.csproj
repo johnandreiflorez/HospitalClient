@@ -145,12 +145,14 @@
     <Content Include="Paginas\Scripts\Comunes\FuncionesComunes.js" />
     <Content Include="Paginas\Scripts\Comunes\Tablas.js" />
     <Content Include="Paginas\Scripts\Facturacion.js" />
+    <Content Include="Paginas\Scripts\Enfermera.js" />
     <Content Include="Paginas\Scripts\Formulario.js" />
     <Content Include="Paginas\Scripts\Habitacion.js" />
     <Content Include="Paginas\Scripts\Ingreso.js" />
     <Content Include="Paginas\Scripts\Medico.js" />
     <Content Include="Paginas\Scripts\Paciente.js" />
     <Content Include="Paginas\Scripts\Tratamiento.js" />
+    <Content Include="Paginas\Scripts\TratamientoAsignado.js" />
     <Content Include="Paginas\Tratamiento.html" />
     <Content Include="Paginas\TratamientoAsignado.html" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
