@@ -12,8 +12,8 @@ $(document).ready(() => {
     $("#btnActualizar").click(Actualizar)
     $("#btnEliminar").click(Eliminar)
     $("#btnLimpiar").click(limpiar)
-    LlenarComboServicio("http://localhost:53689/Api/tratamiento/GetAll", "#cbotratamientoA", "Seleccione un paciente", false, "ID", "Nombre");
-    LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIDIngreso", "Seleccione una habitación", false, "ID", "Tipo");
+    LlenarComboServicio("http://localhost:53689/Api/Tratamiento/GetAll", "#cbotratamientoA", "Seleccione el tratamiento", false, "ID", "Nombre");
+    LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIDIngreso", "Seleccione una Ingreso", false, "ID", "Tipo");
 })
 
 function Ingresar() {
