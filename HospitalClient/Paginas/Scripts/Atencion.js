@@ -67,9 +67,24 @@ function Consultar() {
 
 function ConsultarFila(DatosFila) {
     $("#txtID").val(DatosFila.find('td:eq(0)').text());
-    $("#txtTipo").val(DatosFila.find('td:eq(1)').text());
-    $("#txtPrecio").val(DatosFila.find('td:eq(2)').text());
+    $("#cboMedico").val(DatosFila.find('td:eq(1)').text());
+    $("#cboEnfermera").val(DatosFila.find('td:eq(2)').text());
+    $("#cboPaciente").val(DatosFila.find('td:eq(3)').text());
+    $("#cboIngreso").val(DatosFila.find('td:eq(4)').text());
+   // $("#cboIngreso2")[0].selectedOptions[0].innerText
+    $("#txtFecha").val(DatosFila.find('td:eq(5)').text());
+    $("#txtNota").val(DatosFila.find('td:eq(6)').text());
 }
+
+function setValueCombo(idCombo, Valor) {
+    let options = $(idCombo)[0].options;
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].innerText == Valor) {
+            $(idCombo).val(options[i].value);
+        }
+    }
+}
+
 function limpiar() {
     $("#txtID").val();
     $("#cboMedico").val();
