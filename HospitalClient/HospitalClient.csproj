@@ -144,6 +144,7 @@
     <Content Include="Paginas\Scripts\Comunes\Combos.js" />
     <Content Include="Paginas\Scripts\Comunes\FuncionesComunes.js" />
     <Content Include="Paginas\Scripts\Comunes\Tablas.js" />
+    <Content Include="Paginas\Scripts\Facturacion.js" />
     <Content Include="Paginas\Scripts\Formulario.js" />
     <Content Include="Paginas\Scripts\Habitacion.js" />
     <Content Include="Paginas\Scripts\Ingreso.js" />

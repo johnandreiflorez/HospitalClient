@@ -38,9 +38,18 @@ function LlenarComboServicio(sURL, ComboLlenar, TextoSeleccione, async, value, t
         dataType: "json",
         async: async,
         success: function (respuesta) {
-            for (var op = 0; op < respuesta.length; op++) {
-                $(ComboLlenar).append('<option value=' + respuesta[op][value] + '>' + respuesta[op][text] + '</option>');
+            if (!respuesta.length) {
+                return "No hay datos";
             }
+            let keys = Object.keys(respuesta[0]);
+            let html = '';
+            for (var op = 0; op < respuesta.length; op++) {
+                let dataSet = '';
+                keys.forEach(element => {
+                    dataSet += `data-${element}="${respuesta[op][element]}"`;                })
+                html += '<option ' + dataSet + 'value=' + respuesta[op][value] + '>' + respuesta[op][text] + '</option>';
+            }
+            $(ComboLlenar).append(html);
         }
     });
     return promise;
