@@ -1,7 +1,7 @@
-﻿function LlenaTablaServicio(sURLServicio, TablaLlenar) {
+﻿function LlenaTablaServicio(sURLServicio, TablaLlenar, type ="GET") {
     var promise;
     promise = $.ajax({
-        type: "GET",
+        type,
         url: sURLServicio,
         contentType: "application/json",
         data: null,
