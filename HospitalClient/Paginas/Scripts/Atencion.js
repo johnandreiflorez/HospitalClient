@@ -4,6 +4,7 @@
     LlenarComboServicio("http://localhost:53689/Api/Paciente/GetAll", "#cboPaciente", "Seleccione un paciente", false, "ID", "Nombre");
     LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIngreso", "Seleccione el ingreso", false, "Paciente", "Fecha_Ingreso");
     LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIngreso2", "Seleccione el ingreso", false, "Paciente", "ID");
+    Consultar();
     $("#cboPaciente").change((e) => {
     
         $("#cboIngreso").val(e.target.selectedOptions[0].innerText);
@@ -55,7 +56,7 @@ function Actualizar() {
 function Eliminar() {
     getData();
     var result = requestAjax("http://localhost:53689/Api/Atencion/Delete?id=" + data.ID, "DELETE");
-    mensaje(false, "Se Elimino la habitación del tipo: " + result.Tipo);
+    mensaje(false, "Se Elimino la atencion " + result.ID);
     Consultar();
 }
 
@@ -67,12 +68,12 @@ function Consultar() {
 
 function ConsultarFila(DatosFila) {
     $("#txtID").val(DatosFila.find('td:eq(0)').text());
-    $("#cboMedico").val(DatosFila.find('td:eq(1)').text());
-    $("#cboEnfermera").val(DatosFila.find('td:eq(2)').text());
-    $("#cboPaciente").val(DatosFila.find('td:eq(3)').text());
-    $("#cboIngreso").val(DatosFila.find('td:eq(4)').text());
+    setValueCombo("#cboMedico", DatosFila.find('td:eq(1)').text());
+    setValueCombo("#cboEnfermera", DatosFila.find('td:eq(2)').text());
+    setValueCombo("#cboPaciente", DatosFila.find('td:eq(3)').text());
+    setValueCombo("#cboIngreso", DatosFila.find('td:eq(4)').text());
    // $("#cboIngreso2")[0].selectedOptions[0].innerText
-    $("#txtFecha").val(DatosFila.find('td:eq(5)').text());
+    $("#txtFecha").val(DatosFila.find('td:eq(5)').text().split("T")[0]);
     $("#txtNota").val(DatosFila.find('td:eq(6)').text());
 }
 
@@ -86,11 +87,12 @@ function setValueCombo(idCombo, Valor) {
 }
 
 function limpiar() {
-    $("#txtID").val();
-    $("#cboMedico").val();
-    $("#cboEnfermera").val();
-    $("#cboPaciente").val();
-    $("#cboIngreso2")[0].selectedOptions[0].innerText
-    $("#txtFecha").val();
-    $("#txtNota").val();
+    $("#txtID").val("");
+    $("#cboMedico").val(-1);
+    $("#cboEnfermera").val(-1);
+    $("#cboPaciente").val(-1);
+    $("#cboIngreso").val(-1);
+    $("#cboIngreso2").val(-1);
+    $("#txtFecha").val("");
+    $("#txtNota").val("");
 }
