@@ -1,4 +1,5 @@
 ﻿$(document).ready(() => {
+    LlenarComboServicio("http://localhost:53689/Api/Especializacion/GetAll", "#cboEspecialidad", "Seleccione una Especializacion", false, "ID", "Nombre");
     Consultar();
     $("#btnIngresar").click(Ingresar);
     $("#btnActualizar").click(Actualizar);
@@ -14,7 +15,8 @@ var data = {
     Apellido: "",
     Especialidad: "",
     "Dirección": "",
-    "Teléfono": ""
+    "Teléfono": "",
+    ID_Especializacion: ""
 }
 
 
@@ -25,6 +27,7 @@ function getData() {
     data.Especialidad = $("#txtEspecialidad").val();
     data.Teléfono = $("#txtTelefono").val();
     data.Dirección = $("#txtDireccion").val();
+    data.ID_Especializacion = $("#cboEspecialidad").val();
 }
 
 function Ingresar() {
@@ -58,15 +61,28 @@ function ConsultarFila(DatosFila) {
     $("#txtID").val(DatosFila.find('td:eq(0)').text());
     $("#txtNombre").val(DatosFila.find('td:eq(1)').text());
     $("#txtApellido").val(DatosFila.find('td:eq(2)').text());
-    $("#txtEspecialidad").val(DatosFila.find('td:eq(3)').text());
-    $("#txtTelefono").val(DatosFila.find('td:eq(5)').text());
+    setValueCombo("#cboEspecialidad", DatosFila.find('td:eq(3)').text());
     $("#txtDireccion").val(DatosFila.find('td:eq(4)').text());
+    $("#txtTelefono").val(DatosFila.find('td:eq(5)').text());
+
+
 }
+
+function setValueCombo(idCombo, Valor) {
+    let options = $(idCombo)[0].options;
+    for (var i = 0; i < options.length; i++) {
+        if (options[i].innerText == Valor) {
+            $(idCombo).val(options[i].value);
+        }
+    }
+}
+
+
 function limpiar() {
     $("#txtID").val("");
     $("#txtNombre").val("");
     $("#txtApellido").val("");
-    $("#txtEspecialidad").val("");
+    $("#cboEspecialidad").val(-1);
     $("#txtTelefono").val("");
     $("#txtDireccion").val("");
 }
