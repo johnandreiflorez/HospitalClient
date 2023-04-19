@@ -71,6 +71,7 @@ function LlenarTablaControlador(sURL, Comando, lstParametros, TablaLlenar) {
 }
 
 function LlenarTablaDatos(respuesta, TablaLlenar) {
+    //CrearEncabezado(TablaLlenar, respuesta);
     var columns = [];
     columnNames = Object.keys(respuesta[0]);
     for (var i in columnNames) {

@@ -1,7 +1,7 @@
 ﻿$(document).ready(() => {
     LlenarComboServicio("http://localhost:53689/Api/Medico/GetAll", "#cboMedico", "Seleccione un Medico", false, "ID", "Nombre");
     LlenarComboServicio("http://localhost:53689/Api/Enfermera/GetAll", "#cboEnfermera", "Seleccione una Enfermera", false, "ID", "Nombre");
-    LlenarComboServicio("http://localhost:53689/Api/Paciente/GetAll", "#cboPaciente", "Seleccione un paciente", false, "ID", "Nombre");
+    LlenarComboServicio("http://localhost:53689/Api/Paciente/GetPacientes", "#cboPaciente", "Seleccione un paciente", false, "ID", "Nombre", "PATCH");
     LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIngreso", "Seleccione el ingreso", false, "Paciente", "Fecha_Ingreso");
     LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIngreso2", "Seleccione el ingreso", false, "Paciente", "ID");
     $("#cboPaciente").change((e) => {

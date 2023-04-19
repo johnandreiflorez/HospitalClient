@@ -5,7 +5,8 @@
     Fecha_ingreso: "",
     Fecha_salida: ""
 };
-
+let fechaActual = new Date().toISOString().split("T")[0];
+let datatable = [];
 $(document).ready(() => {
     LlenarComboServicio("http://localhost:53689/Api/Facturacion/GetAll", "#cboPaciente", "Seleccione un paciente", false, "IDIngreso", "Paciente");
     /*LlenarComboServicio("http://localhost:53689/Api/Habitacion/GetAll", "#cboHabitacion", "Seleccione una habitación", false, "ID", "Tipo");*/
@@ -15,7 +16,8 @@ $(document).ready(() => {
 function setearEventos() {
     $("#cboPaciente").change(infoPaciente);
     setTimeout(() => {
-        $('#txtFechaSalida').val(new Date().toISOString().split("T")[0]);
+        $('#txtFechaSalida').val(fechaActual);
+        $('#txtFechaPago').val(fechaActual);
     },500)
     $('#txtFechaSalida').change(getDays);
     $('#fechaIngreso').change(getDays);
@@ -23,13 +25,28 @@ function setearEventos() {
     $("#btnIngresar").click(Ingresar)
     $("#btnActualizar").click(Actualizar)
     $("#btnEliminar").click(Eliminar)
-    $("#btnLimpiar").click(limpiar)
+    $("#btnLimpiar").click(limpiar);
+    $("#pagado2").change((e) => {
+        setFechaPago(!e.target.checked)
+    })
 
+    $("#pagado1").change((e) => {
+        setFechaPago(e.target.checked)
+    })
+
+}
+
+function setFechaPago(sw) {
+    if (sw)
+        $('#txtFechaPago').val(fechaActual);
+    else
+        $('#txtFechaPago').val("");
+    document.getElementById('txtFechaPago').disabled = sw
 }
 function ConsultarTratamientosAsignados() {
     let ID = $("#cboPaciente").val();
-    LlenaTablaServicio("http://localhost:53689/Api/Facturacion/getTratamientos?ID="+ ID, "#tblTratamientoAsignado", "PATCH");
-    asignarEventosTabla("#tblTratamientoAsignado");
+    datatable = requestAjax("http://localhost:53689/Api/Facturacion/getTratamientos?ID=" + ID, "PATCH");
+    LlenarTablaDatos(datatable, "#tblTratamientoAsignado");
 }
 
 function getDays() {
@@ -44,8 +61,12 @@ function getDays() {
 }
 
 function getValorFacturacion(dias) {
+    let valorTratamientos = 0;
+    datatable.forEach(element => {
+        valorTratamientos += element.Valor;
+    })
     let valorHabitacion = $("#txtPrecioHabitacion").val();
-    $("#txtValor").val(dias * valorHabitacion);
+    $("#txtValor").val(dias * valorHabitacion + valorTratamientos) ;
 }
 
 function infoPaciente(e) {

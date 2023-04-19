@@ -59,15 +59,6 @@ function ConsultarFila(DatosFila) {
     $("#txtFechaSalida").val(DatosFila.find('td:eq(4)').text().split("T")[0]);
 }
 
-function setValueCombo(idCombo, Valor) {
-    let options = $(idCombo)[0].options;
-    for (var i = 0; i < options.length; i++) {
-        if (options[i].innerText == Valor) {
-            $(idCombo).val(options[i].value);
-        }
-    }
-}
-
 function limpiar() {
     $("#txtID").val("");
     $("#cboPaciente").val(-1);
