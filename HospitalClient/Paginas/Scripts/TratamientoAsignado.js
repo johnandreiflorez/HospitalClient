@@ -13,13 +13,13 @@ $(document).ready(() => {
     $("#btnEliminar").click(Eliminar)
     $("#btnLimpiar").click(limpiar)
     LlenarComboServicio("http://localhost:53689/Api/tratamiento/GetAll", "#cbotratamientoA", "Seleccione un paciente", false, "ID", "Nombre");
-    LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIDIngreso", "Seleccione una habitación", false, "ID", "Tipo");
+    LlenarComboServicio("http://localhost:53689/Api/Paciente/GetPacientes", "#cboIDIngreso", "Seleccione una paciente", false, "ID", "Nombre", "PATCH");
 })
 
 function Ingresar() {
     debugger;
     getData();
-    var result = requestAjax("http://localhost:53689/Api/TAsignacionTratamientoo/Create", "POST", data);
+    var result = requestAjax("http://localhost:53689/Api/AsignacionTratamiento/Create", "POST", data);
     mensaje(true, "Se registro un ingreso del tratamiento con el ID: " + result.ID);
     Consultar();
 }
@@ -34,7 +34,7 @@ function Actualizar() {
 function Eliminar() {
     getData();
     var result = requestAjax("http://localhost:53689/Api/AsignacionTratamiento/Delete?id=" + data.ID, "DELETE");
-    mensaje(false, "Se Elimino el Tratamiento Asignado del Paciente con ID: " + result.ID_Paciente);
+    mensaje(false, "Se Elimino el Tratamiento Asignado con ID: " + result.ID);
     Consultar();
 }
 
@@ -54,8 +54,8 @@ function getData() {
 
 function ConsultarFila(DatosFila) {
     $("#txtID").val(DatosFila.find('td:eq(0)').text());
-    setValueCombo("#cbotratamientoA", DatosFila.find('td:eq(1)').text());
-    setValueCombo("#cboIDIngreso", DatosFila.find('td:eq(2)').text());
+    setValueCombo("#cboIDIngreso", DatosFila.find('td:eq(1)').text());
+    setValueCombo("#cbotratamientoA", DatosFila.find('td:eq(2)').text());
     $("#txtFechaInicio").val(DatosFila.find('td:eq(3)').text().split("T")[0]);
     $("#txtFechaFin").val(DatosFila.find('td:eq(4)').text().split("T")[0]);
 }

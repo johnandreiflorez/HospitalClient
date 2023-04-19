@@ -23,7 +23,7 @@ function LlenarComboDatos(respuesta, ComboLlenar) {
         $(ComboLlenar).append('<option value=' + respuesta[op].Valor + '>' + respuesta[op].Texto + '</option>');
     }
 }
-function LlenarComboServicio(sURL, ComboLlenar, TextoSeleccione, async, value, text) {
+function LlenarComboServicio(sURL, ComboLlenar, TextoSeleccione, async, value, text, type = "GET") {
     $(ComboLlenar).empty();
 
     if (TextoSeleccione != "") {
@@ -31,7 +31,7 @@ function LlenarComboServicio(sURL, ComboLlenar, TextoSeleccione, async, value, t
     }
     var promise;
     promise = $.ajax({
-        type: "GET",
+        type,
         url: sURL,
         contentType: "application/json",
         data: null,
