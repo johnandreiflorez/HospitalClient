@@ -23,7 +23,6 @@ function getData() {
 }
 
 function Ingresar() {
-    debugger;
     getData();
     var result = requestAjax("http://localhost:53689/Api/Enfermera/Create", "POST", data);
     mensaje(true, "Se ingreso la enfermera con el ID: " + result.ID);
@@ -39,6 +38,10 @@ function Actualizar() {
 
 function Eliminar() {
     getData();
+    if (data.ID == 0 || !data.ID) {
+        mensaje(false, "NO SE PUDO BORRAR EL REGISTRO, GARANTICE EL ID DE LA ENFERMERA");
+        return;
+    }
     var result = requestAjax("http://localhost:53689/Api/Enfermera/Delete?id=" + data.ID, "DELETE");
     mensaje(false, "Se Elimino la enfermera con el Nombre: " + result.Nombre + "\n Apellido: " + result.Apellido);
     Consultar();

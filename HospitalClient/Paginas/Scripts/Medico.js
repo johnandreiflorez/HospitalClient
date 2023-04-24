@@ -46,6 +46,10 @@ function Actualizar() {
 
 function Eliminar() {
     getData();
+    if (data.ID == 0 || !data.ID) {
+        mensaje(false, "NO SE PUDO BORRAR EL REGISTRO, GARANTICE EL ID DEL MEDICO");
+        return;
+    }
     var result = requestAjax("http://localhost:53689/Api/Medico/Delete?id=" + data.ID, "DELETE");
     mensaje(false, "Se Elimino el Medico con el Nombre: " + result.Nombre + "\n Apellido: " + result.Apellido);
     Consultar();
@@ -64,8 +68,6 @@ function ConsultarFila(DatosFila) {
     setValueCombo("#cboEspecialidad", DatosFila.find('td:eq(3)').text());
     $("#txtDireccion").val(DatosFila.find('td:eq(4)').text());
     $("#txtTelefono").val(DatosFila.find('td:eq(5)').text());
-
-
 }
 
 function setValueCombo(idCombo, Valor) {

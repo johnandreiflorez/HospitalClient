@@ -5,6 +5,7 @@
     Costo: 0
 };
 var dataMedicamento = []
+var dataMedicamentoEdited = []
 
 $(document).ready(() => {
     $("#btnIngresar").click(Ingresar)
@@ -18,18 +19,26 @@ $(document).ready(() => {
 
 function addTable() {
     let value = $('#cboMedicamento').val();
+    let dataValidate = dataMedicamentoEdited.length > 0 ? dataMedicamentoEdited : dataMedicamento;
+    let swData = dataMedicamentoEdited.length > 0;
     if (!value || value == "-1") {
         mensajeMedicamento(false, "Seleccione un medicamento");
         return;
     }
-    if (dataMedicamento.find(x => x.ID_Medicamento == value)) {
+    if (dataValidate.find(x => x.ID_Medicamento == value)) {
         mensajeMedicamento(false, "El medicamento ya fue agregado");
         return;
     }
     let obj = {
-        ID_Medicamento: value, Medicamento: document.getElementById('cboMedicamento').selectedOptions[0].innerText}
-    dataMedicamento.push(obj);
-    LlenarTablaDatos(dataMedicamento, "#tblMedicamentos");
+        Medicamento: document.getElementById('cboMedicamento').selectedOptions[0].innerText, ID_Medicamento: value}
+    
+    dataValidate.push(obj);
+    if (swData) {
+        dataMedicamento.push(obj);
+    } else {
+        dataMedicamentoEdited.push(obj);
+    }
+    LlenarTablaDatos(dataValidate, "#tblMedicamentos");
     mensajeMedicamento(true, "El medicamento fue agregado");
     $('#cboMedicamento').val(-1);
 }
@@ -61,12 +70,23 @@ function Ingresar() {
 function Actualizar() {
     getData();
     var result = requestAjax("http://localhost:53689/Api/Tratamiento/Edit", "PUT", data);
+    dataMedicamento.map(x => x.ID_Tratamiento = data.ID);
+    dataMedicamento.map(x => x.ID = result.ID_Medicamento);
+    var result2 = requestAjax("http://localhost:53689/Api/MedicamentoTratamiento/Create", "POST", dataMedicamento);
     mensaje(true, result);
     Consultar();
 }
 
 function Eliminar() {
     getData();
+    if (data.ID == 0 || !data.ID) {
+        mensaje(false, "NO SE PUDO BORRAR EL REGISTRO, GARANTICE EL ID DEL TRATAMIENTO");
+        return;
+    }
+    if (dataMedicamentoEdited.length > 0) {
+        dataMedicamentoEdited.map(x => x.ID_Tratamiento = data.ID);
+        requestAjax("http://localhost:53689/Api/MedicamentoTratamiento/Delete", "DELETE", dataMedicamentoEdited);
+    }
     var result = requestAjax("http://localhost:53689/Api/Tratamiento/Delete?id=" + data.ID, "DELETE");
     mensaje(false, "Se Elimino el tratamiento con el nombre: " + result.Nombre);
     Consultar();
@@ -86,6 +106,9 @@ function ConsultarFila(DatosFila) {
     getData();
     let dataValueMedicamento = requestAjax('http://localhost:53689/Api/MedicamentoTratamiento/GetAll?ID=' + data.ID, 'GET')
     if (dataValueMedicamento.length > 0) {
+        dataValueMedicamento.map(x => x.ID_Medicamento = x.ID);
+        dataValueMedicamento.map(x => delete x.ID);
+        dataMedicamentoEdited = dataValueMedicamento;
         LlenarTablaDatos(dataValueMedicamento, "#tblMedicamentos");
     }
 }
@@ -96,4 +119,6 @@ function limpiar() {
     $("#txtDescripcion").val("");
     $("#txtCosto").val("");
     $("#tblMedicamentos tbody").remove();
+    dataMedicamento = [];
+    dataMedicamentoEdited = [];
 }

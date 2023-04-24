@@ -32,8 +32,12 @@ function Actualizar() {
 
 function Eliminar() {
     getData();
+    if (data.ID == 0 || !data.ID) {
+        mensaje(false, "NO SE PUDO BORRAR EL REGISTRO, GARANTICE EL ID DEL INGRESO");
+        return;
+    }
     var result = requestAjax("http://localhost:53689/Api/Ingreso/Delete?id=" + data.ID, "DELETE");
-    mensaje(false, "Se Elimino el ingreso del Paciente con ID: " + result.ID_Paciente);
+    mensaje(false, "Se Elimino el ingreso del Paciente con el ingreso: " + data.ID);
     Consultar();
 }
 

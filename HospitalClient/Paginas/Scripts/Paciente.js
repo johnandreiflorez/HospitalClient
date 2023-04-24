@@ -45,6 +45,10 @@ function Actualizar() {
 
 function Eliminar() {
     getData();
+    if (data.ID == 0 || !data.ID) {
+        mensaje(false, "NO SE PUDO BORRAR EL REGISTRO, GARANTICE EL ID DEL PACIENTE");
+        return;
+    }
     var result = requestAjax("http://localhost:53689/Api/Paciente/Delete?id=" + data.ID, "DELETE");
     mensaje(false, "Se Elimino el paciente con el Nombre: " + result.Nombre + "\n Apellido: " + result.Apellido);
     Consultar();

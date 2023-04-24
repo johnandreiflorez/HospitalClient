@@ -1,14 +1,10 @@
 ﻿$(document).ready(() => {
     LlenarComboServicio("http://localhost:53689/Api/Medico/GetAll", "#cboMedico", "Seleccione un Medico", false, "ID", "Nombre");
     LlenarComboServicio("http://localhost:53689/Api/Enfermera/GetAll", "#cboEnfermera", "Seleccione una Enfermera", false, "ID", "Nombre");
-    LlenarComboServicio("http://localhost:53689/Api/Paciente/GetAll", "#cboPaciente", "Seleccione un paciente", false, "ID", "Nombre");
-    LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIngreso", "Seleccione el ingreso", false, "Paciente", "Fecha_Ingreso");
-    LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboIngreso2", "Seleccione el ingreso", false, "Paciente", "ID");
+    LlenarComboServicio("http://localhost:53689/Api/Ingreso/GetAll", "#cboPaciente", "Seleccione un paciente", false, "ID", "Paciente");
     Consultar();
     $("#cboPaciente").change((e) => {
-    
-        $("#cboIngreso").val(e.target.selectedOptions[0].innerText);
-        $("#cboIngreso2").val(e.target.selectedOptions[0].innerText);
+        $("#txtFechaIngreso").val(e.target.selectedOptions[0].dataset.fecha_ingreso);
     });
     $("#txtFecha").val(new Date().toISOString().split("T")[0]);
     $("#btnIngresar").click(Ingresar)
@@ -33,8 +29,8 @@ function getData() {
     data.ID = $("#txtID").val();
     data.ID_Medico = $("#cboMedico").val();
     data.ID_Enfermera = $("#cboEnfermera").val();
-    data.ID_Paciente = $("#cboPaciente").val();
-    data.ID_Ingreso = $("#cboIngreso2")[0].selectedOptions[0].innerText
+    data.ID_Paciente = $("#txtFechaIngreso").val()
+    data.ID_Ingreso = $("#cboPaciente").val();
     data.Fecha = $("#txtFecha").val();
     data.Notas = $("#txtNota").val();
 }
@@ -55,6 +51,10 @@ function Actualizar() {
 
 function Eliminar() {
     getData();
+    if (data.ID == 0 || !data.ID) {
+        mensaje(false, "NO SE PUDO BORRAR EL REGISTRO, GARANTICE EL ID DE LA ATENCION");
+        return;
+    }
     var result = requestAjax("http://localhost:53689/Api/Atencion/Delete?id=" + data.ID, "DELETE");
     mensaje(false, "Se Elimino la atencion " + result.ID);
     Consultar();
@@ -71,8 +71,7 @@ function ConsultarFila(DatosFila) {
     setValueCombo("#cboMedico", DatosFila.find('td:eq(1)').text());
     setValueCombo("#cboEnfermera", DatosFila.find('td:eq(2)').text());
     setValueCombo("#cboPaciente", DatosFila.find('td:eq(3)').text());
-    setValueCombo("#cboIngreso", DatosFila.find('td:eq(4)').text());
-   // $("#cboIngreso2")[0].selectedOptions[0].innerText
+    $("#txtFechaIngreso").val(DatosFila.find('td:eq(4)').text());
     $("#txtFecha").val(DatosFila.find('td:eq(5)').text().split("T")[0]);
     $("#txtNota").val(DatosFila.find('td:eq(6)').text());
 }
@@ -91,8 +90,7 @@ function limpiar() {
     $("#cboMedico").val(-1);
     $("#cboEnfermera").val(-1);
     $("#cboPaciente").val(-1);
-    $("#cboIngreso").val(-1);
-    $("#cboIngreso2").val(-1);
+    $("#cboIngreso").val("");
     $("#txtFecha").val("");
     $("#txtNota").val("");
 }
